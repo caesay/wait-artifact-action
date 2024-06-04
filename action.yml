@@ -37,13 +37,13 @@ runs:
         $artifactNames = $artifactNames | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne '' }
 
         # Get other inputs
-        $maxWaitSeconds = [int]${{ inputs.max_wait_seconds }}
+        $maxWaitSeconds = [int]"${{ inputs.max_wait_seconds }}"
         $maxAttempts = [math]::Round($maxWaitSeconds / 10)
         $sleepSeconds = 10
         $attempt = 0
-        $workflowRunId = ${{ inputs.workflow_run_id }}
+        $workflowRunId = "${{ inputs.workflow_run_id }}"
         $repository = "${{ inputs.repository }}"
-        $verbose = [bool]${{ inputs.verbose }}
+        $verbose = [bool]"${{ inputs.verbose }}"
 
         $artifactsAvailable = @{}
         foreach ($artifactName in $artifactNames) {
