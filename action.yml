@@ -36,7 +36,7 @@ runs:
         $artifactNames = $artifactInput -split ',|;|`n'
         $artifactNames = $artifactNames | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne '' }
 
-          # Get other inputs
+        # Get other inputs
         $maxWaitSeconds = [int]${{ inputs.max_wait_seconds }}
         $maxAttempts = [math]::Round($maxWaitSeconds / 10)
         $sleepSeconds = 10
@@ -56,6 +56,8 @@ runs:
           Write-Host "  Artifacts: $artifactInput"
           Write-Host "  Parsed Artifacts: $($artifactNames -join ', ')"
           Write-Host "  Max Wait Seconds: $maxWaitSeconds"
+          Write-Host "  Max Attempts: $maxAttempts"
+          Write-Host "  Sleep Seconds: $sleepSeconds"
           Write-Host "  Workflow Run ID: $workflowRunId"
           Write-Host "  Repository: $repository"
           Write-Host "  Verbose: $verbose"
